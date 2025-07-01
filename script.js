@@ -78,6 +78,22 @@ class DecisionRoulette {
 
         // Reset functionality
         this.resetBtn.addEventListener('click', () => this.reset());
+
+        // Stop sounds when page is about to unload
+        window.addEventListener('beforeunload', () => this.stopAllSounds());
+        
+        // Stop sounds when page loses focus (user switches tabs)
+        window.addEventListener('blur', () => {
+            if (this.spinning) {
+                // Don't stop if currently spinning, but reduce volume
+                if (this.spinSound) this.spinSound.volume = 0.2;
+            }
+        });
+        
+        // Restore volume when page gains focus
+        window.addEventListener('focus', () => {
+            if (this.spinSound) this.spinSound.volume = 0.5;
+        });
     }
 
     setupDarkMode() {
@@ -101,8 +117,11 @@ class DecisionRoulette {
             this.spinSound = new Audio('assets/spin.wav');
             this.winSound = new Audio('assets/win.wav');
             
-            // Set volume
-            if (this.spinSound) this.spinSound.volume = 0.5;
+            // Set volume and loop for spin sound
+            if (this.spinSound) {
+                this.spinSound.volume = 0.5;
+                this.spinSound.loop = true; // Loop the spin sound
+            }
             if (this.winSound) this.winSound.volume = 0.7;
         } catch (error) {
             console.log('Audio files not found - continuing without sound');
@@ -256,7 +275,17 @@ class DecisionRoulette {
         this.spinBtn.disabled = true;
         this.spinBtn.textContent = 'Spinning...';
 
-        // Play spin sound
+        // Stop any currently playing sounds first
+        if (this.spinSound) {
+            this.spinSound.pause();
+            this.spinSound.currentTime = 0;
+        }
+        if (this.winSound) {
+            this.winSound.pause();
+            this.winSound.currentTime = 0;
+        }
+
+        // Play spin sound (looped)
         if (this.spinSound) {
             this.spinSound.currentTime = 0;
             this.spinSound.play().catch(() => {});
@@ -295,6 +324,12 @@ class DecisionRoulette {
         this.spinning = false;
         this.spinBtn.disabled = false;
         this.spinBtn.textContent = 'Spin';
+
+        // Stop spin sound immediately when spin finishes
+        if (this.spinSound) {
+            this.spinSound.pause();
+            this.spinSound.currentTime = 0;
+        }
 
         // Calculate winner
         const normalizedAngle = (2 * Math.PI - (this.currentAngle % (2 * Math.PI))) % (2 * Math.PI);
@@ -455,12 +490,31 @@ class DecisionRoulette {
     }
 
     reset() {
+        // Stop all sounds
+        this.stopAllSounds();
+        
         this.options = [];
         this.currentAngle = 0;
+        this.spinning = false;
+        this.spinBtn.disabled = false;
+        this.spinBtn.textContent = 'Spin';
         this.updateOptionsList();
         this.drawEmptyWheel();
         this.hideResult();
         this.optionInput.value = '';
+    }
+
+    stopAllSounds() {
+        // Stop spin sound
+        if (this.spinSound) {
+            this.spinSound.pause();
+            this.spinSound.currentTime = 0;
+        }
+        // Stop win sound
+        if (this.winSound) {
+            this.winSound.pause();
+            this.winSound.currentTime = 0;
+        }
     }
 }
 

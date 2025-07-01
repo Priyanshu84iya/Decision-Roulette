@@ -682,9 +682,95 @@ input:checked + .slider:before {
 
 .result-actions {
     display: flex;
-    gap: 15px;
+    gap: 30px;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    margin-top: 20px;
+    min-height: 140px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Additional button spacing and positioning */
+#try-again-btn {
+  margin-right: 15px;
+}
+
+#share-result-btn {
+  margin-left: 15px;
+}
+
+/* Ensure buttons maintain their size and don't shrink */
+.result-actions > * {
+  flex-shrink: 0;
+}
+
+/* For very small screens, ensure vertical spacing */
+@media (max-width: 360px) {
+  .result-actions {
+    flex-direction: column;
+    gap: 30px;
+    min-height: 200px;
+  }
+  
+  #try-again-btn,
+  #share-result-btn {
+    margin: 0;
+  }
+}
+
+/* Result Actions Responsive Design */
+@media (max-width: 768px) {
+  .result-actions {
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    min-height: 180px;
+  }
+  
+  .btn-23 {
+    min-width: 160px;
+    max-width: 220px;
+    padding: 0.8rem 2.5rem;
+  }
+  
+  .button {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .button__circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .result-actions {
+    gap: 20px;
+    min-height: 160px;
+    padding: 0 10px;
+  }
+  
+  .btn-23 {
+    min-width: 140px;
+    max-width: 200px;
+    padding: 0.7rem 2rem;
+    font-size: 14px;
+  }
+  
+  .button {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .button__circle {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .btn-23,
@@ -728,7 +814,6 @@ input:checked + .slider:before {
 
 .btn-23 svg {
   display: block;
-  vertical-align: middle;
 }
 
 .btn-23 [hidden] {
@@ -741,6 +826,10 @@ input:checked + .slider:before {
   overflow: hidden;
   padding: 0.8rem 3rem;
   position: relative;
+  flex-shrink: 0;
+  min-width: 160px;
+  max-width: 200px;
+  white-space: nowrap;
 }
 
 .btn-23 span {
@@ -800,8 +889,8 @@ input:checked + .slider:before {
   border: none;
   background: #2aabee;
   color: #fff;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -811,6 +900,7 @@ input:checked + .slider:before {
     background 300ms,
     transform 200ms;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .button__text {
@@ -827,8 +917,8 @@ input:checked + .slider:before {
 
 .button__circle {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   overflow: hidden;
   background: #212121;
   color: #2aabee;
