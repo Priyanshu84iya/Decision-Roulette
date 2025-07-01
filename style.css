@@ -681,95 +681,142 @@ input:checked + .slider:before {
 }
 
 .result-actions {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
+    display: flex !important;
+    gap: 40px;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: 20px;
     min-height: 140px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
+    visibility: visible;
 }
 
-/* Additional button spacing and positioning */
-#try-again-btn {
-  margin-right: 15px;
-}
-
+/* Force visibility of both buttons */
+#try-again-btn,
 #share-result-btn {
-  margin-left: 15px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure the share result button is properly positioned */
+#share-result-btn {
+    margin-left: auto;
 }
 
 /* Ensure buttons maintain their size and don't shrink */
 .result-actions > * {
   flex-shrink: 0;
+  flex-grow: 0;
 }
 
-/* For very small screens, ensure vertical spacing */
-@media (max-width: 360px) {
-  .result-actions {
-    flex-direction: column;
-    gap: 30px;
-    min-height: 200px;
-  }
-  
-  #try-again-btn,
-  #share-result-btn {
-    margin: 0;
-  }
+/* Try again button on the left */
+#try-again-btn {
+  order: 1;
+}
+
+/* Share result button on the right */
+#share-result-btn {
+  order: 2;
 }
 
 /* Result Actions Responsive Design */
 @media (max-width: 768px) {
   .result-actions {
+    justify-content: space-around;
+    gap: 30px;
+    min-height: 160px;
+    max-width: 400px;
+    padding: 0 15px;
+  }
+  
+  .btn-23 {
+    min-width: 140px;
+    max-width: 180px;
+    padding: 0.7rem 2rem;
+  }
+  
+  .result-actions .button {
+    width: 75px;
+    height: 75px;
+  }
+  
+  .result-actions .button .button__circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+  }
+  
+  .result-actions .button .button__text > span {
+    font-size: 10px;
+    inset: 6px;
+  }
+  
+  .result-actions .button .button__icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .result-actions {
     flex-direction: column;
     gap: 25px;
-    align-items: center;
     min-height: 180px;
+    padding: 0 10px;
+    justify-content: center;
+    align-items: center;
   }
   
   .btn-23 {
     min-width: 160px;
     max-width: 220px;
     padding: 0.8rem 2.5rem;
+    font-size: 15px;
   }
   
-  .button {
+  .result-actions .button {
     width: 80px;
     height: 80px;
   }
   
-  .button__circle {
+  .result-actions .button .button__circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 32px;
     height: 32px;
   }
+  
+  .result-actions .button .button__text > span {
+    font-size: 11px;
+    inset: 7px;
+  }
+  
+  .result-actions .button .button__icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  #try-again-btn,
+  #share-result-btn {
+    order: 0;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
   .result-actions {
-    gap: 20px;
-    min-height: 160px;
-    padding: 0 10px;
-  }
-  
-  .btn-23 {
-    min-width: 140px;
-    max-width: 200px;
-    padding: 0.7rem 2rem;
-    font-size: 14px;
-  }
-  
-  .button {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .button__circle {
-    width: 28px;
-    height: 28px;
+    gap: 30px;
+    min-height: 200px;
   }
 }
 
@@ -884,7 +931,8 @@ input:checked + .slider:before {
   }
 }
 
-.button {
+/* Share Result Button - Specific Styling */
+.result-actions .button {
   cursor: pointer;
   border: none;
   background: #2aabee;
@@ -901,6 +949,77 @@ input:checked + .slider:before {
     transform 200ms;
   font-weight: 600;
   flex-shrink: 0;
+  flex-grow: 0;
+  z-index: 2;
+}
+
+/* Ensure result actions button elements are visible */
+.result-actions .button .button__text {
+  position: absolute;
+  inset: 0;
+  animation: text-rotation 8s linear infinite;
+  display: block;
+  pointer-events: none;
+}
+
+.result-actions .button .button__text > span {
+  position: absolute;
+  transform: rotate(calc(20deg * var(--index)));
+  inset: 7px;
+  display: block;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.result-actions .button .button__circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  background: #212121;
+  color: #2aabee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.result-actions .button .button__icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.result-actions .button .button__icon--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.result-actions .button:hover {
+  background: #000;
+  transform: scale(1.05);
+}
+
+.result-actions .button:hover .button__icon {
+  color: #fff;
+}
+
+.result-actions .button:hover .button__icon:first-child {
+  transform: translate(150%, -150%);
+}
+
+.result-actions .button:hover .button__icon--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+.result-actions .button:active {
+  transform: scale(0.95);
 }
 
 .button__text {
@@ -916,7 +1035,10 @@ input:checked + .slider:before {
 }
 
 .button__circle {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 35px;
   height: 35px;
   overflow: hidden;
@@ -938,7 +1060,17 @@ input:checked + .slider:before {
   transform: scale(1.05);
 }
 
+/* Specific hover for share result button */
+#share-result-btn.button:hover {
+  background: #000;
+  transform: scale(1.05);
+}
+
 .button:hover .button__icon {
+  color: #fff;
+}
+
+#share-result-btn.button:hover .button__icon {
   color: #fff;
 }
 
@@ -1192,7 +1324,7 @@ input:checked + .slider:before {
   padding: 50px;
 }
 
-.buttons:hover .button {
+.buttons:hover .social-ring .button {
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15), -3px -3px 8px rgba(255, 255, 255, 0.8);
 }
 
@@ -1230,7 +1362,7 @@ input:checked + .slider:before {
   fill: var(--primary-color, #4f46e5);
 }
 
-.button {
+.social-ring .button {
   position: absolute;
   display: grid;
   place-items: center;
@@ -1247,7 +1379,7 @@ input:checked + .slider:before {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.button svg {
+.social-ring .button svg {
   fill: var(--text-color, #666);
   transition: fill 0.2s ease;
   width: 20px;
