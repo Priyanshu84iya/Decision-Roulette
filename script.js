@@ -140,12 +140,81 @@ class DecisionRoulette {
 
     addRandomSuggestions() {
         const suggestions = [
+            // Food & Drinks
             'Pizza', 'Sushi', 'Burger', 'Tacos', 'Pasta', 'Ice Cream',
+            'Chinese Food', 'Thai Food', 'Indian Food', 'Mexican Food', 'Italian Food',
+            'Chicken Wings', 'BBQ', 'Seafood', 'Steak', 'Salad', 'Sandwich',
+            'Ramen', 'Pho', 'Dim Sum', 'Falafel', 'Kebab', 'Curry',
+            'Chocolate', 'Cake', 'Cookies', 'Donuts', 'Pancakes', 'Waffles',
+            'Coffee', 'Tea', 'Smoothie', 'Water', 'Juice', 'Soda',
+            'Wine', 'Beer', 'Cocktail', 'Hot Chocolate', 'Milkshake', 'Boba Tea',
+            
+            // Activities & Entertainment
             'Movie Night', 'Go for a Walk', 'Read a Book', 'Play Games',
             'Call a Friend', 'Learn Something New', 'Exercise', 'Cook',
+            'Listen to Music', 'Watch TV Series', 'Go Shopping', 'Take Photos',
+            'Draw or Paint', 'Write in Journal', 'Meditate', 'Yoga',
+            'Dance', 'Sing Karaoke', 'Play Sports', 'Go Swimming',
+            'Board Games', 'Video Games', 'Puzzle', 'Crafting',
+            'Gardening', 'Clean House', 'Organize Room', 'Decorate',
+            'Go to Museum', 'Visit Park', 'Attend Concert', 'Watch Theater',
+            'Go Bowling', 'Mini Golf', 'Arcade Games', 'Escape Room',
+            'Hiking', 'Camping', 'Fishing', 'Biking', 'Picnic',
+            
+            // Colors
             'Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange',
+            'Pink', 'Black', 'White', 'Gray', 'Brown', 'Turquoise',
+            'Magenta', 'Cyan', 'Lime', 'Navy', 'Maroon', 'Gold',
+            'Silver', 'Coral', 'Lavender', 'Mint', 'Peach', 'Teal',
+            
+            // Places to Visit
             'Beach', 'Mountains', 'City', 'Forest', 'Desert', 'Lake',
-            'Coffee', 'Tea', 'Smoothie', 'Water', 'Juice', 'Soda'
+            'Library', 'Cafe', 'Restaurant', 'Mall', 'Park', 'Zoo',
+            'Aquarium', 'Museum', 'Art Gallery', 'Bookstore', 'Cinema',
+            'Gym', 'Spa', 'Temple', 'Church', 'Market', 'Festival',
+            'Amusement Park', 'Water Park', 'Botanical Garden', 'Observatory',
+            
+            // Transportation
+            'Walk', 'Bike', 'Car', 'Bus', 'Train', 'Subway',
+            'Taxi', 'Uber', 'Scooter', 'Skateboard', 'Motorcycle',
+            
+            // Weather Activities
+            'Stay Inside', 'Go Outside', 'Rainy Day Activity', 'Sunny Day Fun',
+            'Winter Sports', 'Summer Activity', 'Spring Adventure', 'Fall Exploration',
+            
+            // Learning & Skills
+            'Learn Language', 'Take Online Course', 'Watch Tutorial', 'Practice Instrument',
+            'Learn Coding', 'Study Art', 'Research Topic', 'Practice Writing',
+            'Learn Photography', 'Study History', 'Explore Science', 'Math Practice',
+            
+            // Social Activities
+            'Meet Friends', 'Video Call Family', 'Join Club', 'Attend Event',
+            'Volunteer', 'Help Neighbor', 'Make New Friends', 'Network',
+            'Team Building', 'Group Study', 'Potluck Dinner', 'Game Night',
+            
+            // Self Care & Wellness
+            'Take Bath', 'Face Mask', 'Massage', 'Stretch', 'Deep Breathing',
+            'Early Sleep', 'Drink Water', 'Healthy Snack', 'Walk in Nature',
+            'Digital Detox', 'Gratitude Journal', 'Affirmations', 'Mindfulness',
+            
+            // Creative Activities
+            'Photography', 'Writing', 'Drawing', 'Painting', 'Sculpting',
+            'Poetry', 'Music Composition', 'Dancing', 'Acting', 'Singing',
+            'Origami', 'Knitting', 'Sewing', 'Woodworking', 'Pottery',
+            
+            // Technology & Digital
+            'Browse Internet', 'Social Media', 'Online Shopping', 'Gaming',
+            'Streaming', 'Podcast', 'YouTube', 'Virtual Tour', 'App Development',
+            
+            // Seasons & Holidays
+            'Christmas Activity', 'Halloween Fun', 'Easter Celebration', 'New Year Plan',
+            'Summer Vacation', 'Winter Holiday', 'Spring Break', 'Thanksgiving Prep',
+            
+            // Random Fun Choices
+            'Yes', 'No', 'Maybe', 'Later', 'Now', 'Tomorrow',
+            'Left', 'Right', 'Up', 'Down', 'Forward', 'Backward',
+            'Option A', 'Option B', 'Option C', 'Choice 1', 'Choice 2', 'Choice 3',
+            'Rock', 'Paper', 'Scissors', 'Heads', 'Tails', 'Odd', 'Even'
         ];
 
         // Add 3-5 random suggestions that aren't already in the list
