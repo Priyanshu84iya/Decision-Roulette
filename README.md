@@ -1,7 +1,7 @@
 # 🎯 Decision Roulette
 
 <div align="center">
-  <img src="assets/logo.svg" alt="Decision Roulette Logo" width="120" height="120">
+  <img src="assets/logo.png" alt="Decision Roulette Logo" width="120" height="120">
   
   **The Ultimate Decision-Making Tool**
   
